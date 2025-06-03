@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  embedding-service:
+	build: .
+	ports:
+	  - "8000:8000"
+	environment:
+	  - API_KEY=${API_KEY}
+	  - TYPESENSE_HOST=${TYPESENSE_HOST}
+	  - TYPESENSE_PORT=${TYPESENSE_PORT}
+	  - TYPESENSE_PROTOCOL=${TYPESENSE_PROTOCOL}
+	  - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}
+	  - TYPESENSE_COLLECTION=${TYPESENSE_COLLECTION}
+	  - EMBEDDING_MODEL=${EMBEDDING_MODEL}
+	  - USE_OPENAI_EMBEDDINGS=${USE_OPENAI_EMBEDDINGS}
+	  - OPENAI_API_KEY=${OPENAI_API_KEY}
+	  - ENABLE_EMBEDDING_CACHE=${ENABLE_EMBEDDING_CACHE}
+	  - DEBUG=${DEBUG}
+	volumes:
+	  - ./logs:/app/logs
+	restart: unless-stopped
+	healthcheck:
+	  test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+	  interval: 30s
+	  timeout: 10s
+	  retries: 3
+	  start_period: 40s
+
+  # Optional: Redis for caching (if you want to add distributed caching later)
+  redis:
+	image: redis:7-alpine
+	ports:
+	  - "6379:6379"
+	command: redis-server --appendonly yes
+	volumes:
+	  - redis_data:/data
+	restart: unless-stopped
+
+volumes:
+  redis_data:
