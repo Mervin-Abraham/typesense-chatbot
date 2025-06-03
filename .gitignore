@@ -1,0 +1,72 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# FastAPI / Uvicorn logs
+*.log
+*.sqlite3
+
+# Virtual environments
+.env/
+.venv/
+venv/
+ENV/
+env/
+pip-selfcheck.json
+
+# VS Code settings
+.vscode/
+
+# Pytest / coverage / mypy
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# dotenv
+.env
+.env.*
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# FastAPI static/media (optional)
+staticfiles/
+media/
+
+# Uvicorn reload cache (optional, if using reload-dir outside src)
+__reloader__/
+
+# Docker (if using containers)
+*.pid
+docker-compose.override.yml
